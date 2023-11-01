@@ -34,6 +34,9 @@ class _PokemonListPageState extends State<PokemonListPage> {
 
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: BlocConsumer(
         bloc: pokemonListBloc,
@@ -57,9 +60,11 @@ class _PokemonListPageState extends State<PokemonListPage> {
                   : SliverGrid(
                       delegate: SliverChildBuilderDelegate((context, index) {
                         return Padding(
-                          padding: index % 2 == 0
-                              ? const EdgeInsets.only(left: 12)
-                              : const EdgeInsets.only(right: 12),
+                          padding: (index + 1) % (width / 250).ceil() == 1
+                              ? const EdgeInsets.only(left: 10)
+                              : (index + 1) % (width / 250).ceil() == 0
+                                  ? const EdgeInsets.only(right: 10)
+                                  : const EdgeInsets.only(),
                           child: Container(
                             decoration: const BoxDecoration(
                                 color: Colors.redAccent,
@@ -112,11 +117,10 @@ class _PokemonListPageState extends State<PokemonListPage> {
                           ),
                         );
                       }, childCount: pokemonListBloc.pokemonList.length),
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              crossAxisSpacing: 10,
-                              mainAxisSpacing: 10)),
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: (width / 250).ceil(),
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 10)),
               SliverToBoxAdapter(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 24),
