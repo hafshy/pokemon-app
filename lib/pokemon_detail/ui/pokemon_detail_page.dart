@@ -336,91 +336,161 @@ class _PokemonDetailPageState extends State<PokemonDetailPage>
                                                 ),
                                                 ListView.builder(
                                                     itemCount: pokemonDetailBloc
-                                                        .pokemonDetail!
-                                                        .stats
-                                                        .length,
+                                                            .pokemonDetail!
+                                                            .stats
+                                                            .length +
+                                                        1,
                                                     itemBuilder:
                                                         (context, index) {
-                                                      return Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .only(
-                                                                top: 12.0),
-                                                        child: Row(
-                                                          children: [
-                                                            SizedBox(
-                                                              width: 124,
-                                                              child: Text(
-                                                                formatString(pokemonDetailBloc
-                                                                        .pokemonDetail!
-                                                                        .stats[
-                                                                            index]
-                                                                        .stat
-                                                                        .name)
-                                                                    .capitalize(),
-                                                                style: const TextStyle(
-                                                                    overflow:
-                                                                        TextOverflow
-                                                                            .ellipsis,
-                                                                    fontSize:
-                                                                        16,
-                                                                    color: Colors
-                                                                        .grey,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500),
-                                                              ),
-                                                            ),
-                                                            const SizedBox(
-                                                              width: 12,
-                                                            ),
-                                                            SizedBox(
-                                                              width: 40,
-                                                              child: Text(
-                                                                pokemonDetailBloc
-                                                                    .pokemonDetail!
-                                                                    .stats[
-                                                                        index]
-                                                                    .baseStat
-                                                                    .toString(),
-                                                                style: const TextStyle(
-                                                                    overflow:
-                                                                        TextOverflow
-                                                                            .ellipsis,
-                                                                    fontSize:
-                                                                        16,
-                                                                    color: Colors
-                                                                        .black,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold),
-                                                              ),
-                                                            ),
-                                                            Expanded(
-                                                              child: Center(
-                                                                child:
-                                                                    LinearProgressIndicator(
-                                                                  value: pokemonDetailBloc
+                                                      return index <
+                                                              pokemonDetailBloc
+                                                                  .pokemonDetail!
+                                                                  .stats
+                                                                  .length
+                                                          ? Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                      top:
+                                                                          12.0),
+                                                              child: Row(
+                                                                children: [
+                                                                  SizedBox(
+                                                                    width: 124,
+                                                                    child: Text(
+                                                                      formatString(pokemonDetailBloc
+                                                                              .pokemonDetail!
+                                                                              .stats[index]
+                                                                              .stat
+                                                                              .name)
+                                                                          .capitalize(),
+                                                                      style: const TextStyle(
+                                                                          overflow: TextOverflow
+                                                                              .ellipsis,
+                                                                          fontSize:
+                                                                              16,
+                                                                          color: Colors
+                                                                              .grey,
+                                                                          fontWeight:
+                                                                              FontWeight.w500),
+                                                                    ),
+                                                                  ),
+                                                                  const SizedBox(
+                                                                    width: 12,
+                                                                  ),
+                                                                  SizedBox(
+                                                                    width: 40,
+                                                                    child: Text(
+                                                                      pokemonDetailBloc
                                                                           .pokemonDetail!
                                                                           .stats[
                                                                               index]
-                                                                          .baseStat /
-                                                                      100,
-                                                                  backgroundColor:
-                                                                      Colors.grey[
-                                                                          200],
-                                                                  valueColor: const AlwaysStoppedAnimation<
-                                                                          Color>(
-                                                                      Colors
-                                                                          .redAccent), // Color of the progress indicator
-                                                                ),
+                                                                          .baseStat
+                                                                          .toString(),
+                                                                      style: const TextStyle(
+                                                                          overflow: TextOverflow
+                                                                              .ellipsis,
+                                                                          fontSize:
+                                                                              16,
+                                                                          color: Colors
+                                                                              .black,
+                                                                          fontWeight:
+                                                                              FontWeight.bold),
+                                                                    ),
+                                                                  ),
+                                                                  Expanded(
+                                                                    child:
+                                                                        Center(
+                                                                      child:
+                                                                          LinearProgressIndicator(
+                                                                        value: pokemonDetailBloc.pokemonDetail!.stats[index].baseStat /
+                                                                            100,
+                                                                        backgroundColor:
+                                                                            Colors.grey[200],
+                                                                        valueColor: AlwaysStoppedAnimation<
+                                                                            Color>(pokemonDetailBloc.pokemonDetail!.stats[index].baseStat <
+                                                                                40
+                                                                            ? Colors.yellowAccent
+                                                                            : pokemonDetailBloc.pokemonDetail!.stats[index].baseStat < 70
+                                                                                ? Colors.orangeAccent
+                                                                                : Colors.redAccent), // Color of the progress indicator
+                                                                      ),
+                                                                    ),
+                                                                  )
+                                                                ],
                                                               ),
                                                             )
-                                                          ],
-                                                        ),
-                                                      );
+                                                          : Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                      top:
+                                                                          12.0),
+                                                              child: Row(
+                                                                children: [
+                                                                  const SizedBox(
+                                                                    width: 124,
+                                                                    child: Text(
+                                                                      "Total",
+                                                                      style: TextStyle(
+                                                                          overflow: TextOverflow
+                                                                              .ellipsis,
+                                                                          fontSize:
+                                                                              16,
+                                                                          color: Colors
+                                                                              .grey,
+                                                                          fontWeight:
+                                                                              FontWeight.bold),
+                                                                    ),
+                                                                  ),
+                                                                  const SizedBox(
+                                                                    width: 12,
+                                                                  ),
+                                                                  SizedBox(
+                                                                    width: 40,
+                                                                    child: Text(
+                                                                      pokemonDetailBloc
+                                                                          .pokemonDetail!
+                                                                          .stats
+                                                                          .map((e) => e
+                                                                              .baseStat)
+                                                                          .reduce((value, element) =>
+                                                                              value +
+                                                                              element)
+                                                                          .toString(),
+                                                                      style: const TextStyle(
+                                                                          overflow: TextOverflow
+                                                                              .ellipsis,
+                                                                          fontSize:
+                                                                              16,
+                                                                          color: Colors
+                                                                              .black,
+                                                                          fontWeight:
+                                                                              FontWeight.bold),
+                                                                    ),
+                                                                  ),
+                                                                  Expanded(
+                                                                    child:
+                                                                        Center(
+                                                                      child:
+                                                                          LinearProgressIndicator(
+                                                                        value: pokemonDetailBloc.pokemonDetail!.stats.map((e) => e.baseStat).reduce((value, element) =>
+                                                                                value +
+                                                                                element) /
+                                                                            (pokemonDetailBloc.pokemonDetail!.stats.length *
+                                                                                100),
+                                                                        backgroundColor:
+                                                                            Colors.grey[200],
+                                                                        valueColor:
+                                                                            const AlwaysStoppedAnimation<Color>(Colors.green), // Color of the progress indicator
+                                                                      ),
+                                                                    ),
+                                                                  )
+                                                                ],
+                                                              ),
+                                                            );
                                                     }),
-                                                Text("Moves")
+                                                const Text("Moves")
                                               ],
                                             ),
                                           ),
