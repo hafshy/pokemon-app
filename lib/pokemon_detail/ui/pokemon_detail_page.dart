@@ -4,8 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pokemon_app/pokemon_detail/bloc/pokemon_detail_bloc.dart';
 import 'package:pokemon_app/pokemon_detail/ui/pokemon_detail_content_landscape.dart';
 import 'package:pokemon_app/pokemon_detail/ui/pokemon_detail_content_portrait.dart';
-import 'package:pokemon_app/pokemon_detail/ui/pokemon_detail_tab_bar.dart';
-import 'package:pokemon_app/pokemon_list/ui/pokemin_list_page.dart';
 
 class PokemonDetailPage extends StatefulWidget {
   final String pokemonUrl;

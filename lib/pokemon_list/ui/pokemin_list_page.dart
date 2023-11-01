@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pokemon_app/pokemon_detail/ui/pokemon_detail_page.dart';
-import 'package:pokemon_app/pokemon_detail/ui/pokemon_detail_page.dart';
 import 'package:pokemon_app/pokemon_list/bloc/pokemon_list_bloc.dart';
 
 class PokemonListPage extends StatefulWidget {
@@ -36,17 +35,11 @@ class _PokemonListPageState extends State<PokemonListPage> {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
-    var height = MediaQuery.of(context).size.height;
 
     return Scaffold(
       body: BlocConsumer(
         bloc: pokemonListBloc,
         builder: (context, state) {
-          // if (pokemonListBloc.isLoading) {
-          //   return const Center(
-          //     child: CircularProgressIndicator(),
-          //   );
-          // }
           return CustomScrollView(
             slivers: [
               const SliverAppBar.large(
