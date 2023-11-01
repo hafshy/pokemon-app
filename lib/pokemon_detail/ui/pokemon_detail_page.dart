@@ -13,8 +13,7 @@ class PokemonDetailPage extends StatefulWidget {
   State<PokemonDetailPage> createState() => _PokemonDetailPageState();
 }
 
-class _PokemonDetailPageState extends State<PokemonDetailPage>
-    with TickerProviderStateMixin {
+class _PokemonDetailPageState extends State<PokemonDetailPage> {
   PokemonDetailBloc pokemonDetailBloc = PokemonDetailBloc();
   RegExp regex = RegExp(r'/(\d+)/$');
 
@@ -52,7 +51,6 @@ class _PokemonDetailPageState extends State<PokemonDetailPage>
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
-    TabController _tabController = TabController(length: 3, vsync: this);
     return Scaffold(
       backgroundColor: Colors.white,
       body: BlocConsumer(
@@ -170,24 +168,26 @@ class _PokemonDetailPageState extends State<PokemonDetailPage>
                                     "assets/pokeball.png",
                                   ),
                                 )),
-                            Positioned(
-                                bottom: 0,
-                                child: Container(
-                                  height: height * 0.75 - 200,
-                                  width: width,
-                                  decoration: const BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(20),
-                                          topRight: Radius.circular(20))),
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 20, vertical: 40),
-                                    child: PokemonDetailTabBarWidget(
-                                        pokemonDetail:
-                                            pokemonDetailBloc.pokemonDetail!),
-                                  ),
-                                )),
+                            width < 500
+                                ? Positioned(
+                                    bottom: 0,
+                                    child: Container(
+                                      height: height * 0.75 - 200,
+                                      width: width,
+                                      decoration: const BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(20),
+                                              topRight: Radius.circular(20))),
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 20, vertical: 40),
+                                        child: PokemonDetailTabBarWidget(
+                                            pokemonDetail: pokemonDetailBloc
+                                                .pokemonDetail!),
+                                      ),
+                                    ))
+                                : Container(),
                             Positioned(
                                 left: width * 0.5 - 120,
                                 child: CachedNetworkImage(
@@ -202,7 +202,7 @@ class _PokemonDetailPageState extends State<PokemonDetailPage>
                         )
                       ],
                     )
-                  : const Center(child: Text("loading")));
+                  : const Center(child: Text("Loading...")));
         },
         listener: (context, state) {},
         listenWhen: (previous, current) => current is PokemonDetailActionState,
