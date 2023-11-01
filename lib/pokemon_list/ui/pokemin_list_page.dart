@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pokemon_app/pokemon_detail/ui/pokemon_detail_page.dart';
-import 'package:pokemon_app/pokemon_detail/ui/pokemon_detail_page_resp.dart';
+import 'package:pokemon_app/pokemon_detail/ui/pokemon_detail_page.dart';
 import 'package:pokemon_app/pokemon_list/bloc/pokemon_list_bloc.dart';
 
 class PokemonListPage extends StatefulWidget {
@@ -76,7 +76,7 @@ class _PokemonListPageState extends State<PokemonListPage> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (_) => PokemonDetailRespPage(
+                                        builder: (_) => PokemonDetailPage(
                                               pokemonUrl: pokemonListBloc
                                                   .pokemonList[index].url,
                                             )));
